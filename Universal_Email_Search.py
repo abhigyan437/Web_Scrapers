@@ -1,25 +1,32 @@
 import re
+import pandas as pd
 import numpy as np
 from numpy.core.defchararray import lower
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import pandas as pd
+
 
 pattern = "\w+@\w+.\w+"
 product="Brass Bowl Set"
-category="a"
+category="a"\
+
 path="D:/I2/Project2/F/" + product+"/"+product+"_"+str(category)+".xlsx"
 path_new="D:/I2/Project2/F/" + product+"/"+product+"_Email_"+str(category)+".xlsx"
+
 list_pre_site=['a']
 dic1={}
+
 data=pd.read_excel(path)
+
 list_website=data['Website']
 list_company=[]
 list_site=[]
 list_email=[]
+
 data_created=0
 driver=webdriver.Chrome(executable_path="C:/Drivers/chromedriver.exe")
 n=0
+
 try:
     for ele in list_website:
         print(n+1)
@@ -101,6 +108,7 @@ except:
     new['Website'] = list_site
     new['Email'] = list_email
     new.to_excel(path_new)
+    
 if data_created==0:
     new=pd.DataFrame()
     new['Company']=list_company
